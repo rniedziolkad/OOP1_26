@@ -1,10 +1,11 @@
 public class Segment {
     private Point a, b;
 
-    // wygenerowany konstruktor
+
     public Segment(Point a, Point b) {
-        this.a = a;
-        this.b = b;
+        // używamy konstruktora kopiującego punkt
+        this.a = new Point(a);
+        this.b = new Point(b);
     }
 
     public Segment() {
@@ -19,7 +20,8 @@ public class Segment {
     }
 
     public void setA(Point a) {
-        this.a = a;
+        // używamy konstruktora kopiującego punkt
+        this.a = new Point(a);
     }
 
     public Point getB() {
@@ -27,7 +29,8 @@ public class Segment {
     }
 
     public void setB(Point b) {
-        this.b = b;
+        // używamy konstruktora kopiującego punkt
+        this.b = new Point(b);
     }
 
     public double length() {

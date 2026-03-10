@@ -14,6 +14,12 @@ public class Point {
         this.y = 0;
     }
 
+    // konstruktor kopiujący
+    public Point(Point other) {
+        this.x = other.x;
+        this.y = other.y;
+    }
+
     // akcesor (getter)
     public double getX() {
         return x;

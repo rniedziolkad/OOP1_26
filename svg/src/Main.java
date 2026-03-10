@@ -36,5 +36,13 @@ public class Main {
         // metodę statyczną maxLength wywołujemy za pomocą nazwy klasy
         Segment max = Segment.maxLength(odcinki);
         System.out.println("najdluższy: " + max);
+        System.out.println();
+
+        System.out.println("s1 przed modyfikacjami: " + s1);
+        s1.setA(new Point(0, 0));   // zamienimy punkt a segmentu s1 na nowy punkt; powinno zmienić
+        p2.setX(70);    // nie chcemy, żeby zmodyfikowało obiekt s1
+        System.out.println("s1 po modyfikacjach: " + s1);
+        System.out.println("najdluzszy po modyfikacjach: " + max);
+
     }
 }
