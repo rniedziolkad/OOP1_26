@@ -1,6 +1,20 @@
 public class Segment {
     private Point a, b;
 
+    public Segment perpendicular() {
+        // wektor prostopadły
+        double pdx = - (b.getY() - a.getY());
+        double pdy = b.getX() - a.getX();
+        // środek odcinka
+        double mx = (a.getX() + b.getX()) / 2;
+        double my = (a.getY() + b.getY()) / 2;
+        // połowa wektora prostopadłego
+        pdx = pdx / 2;
+        pdy = pdy / 2;
+        Point p1 = new Point(mx - pdx, my - pdy);
+        Point p2 = new Point(mx + pdx, my + pdy);
+        return new Segment(p1, p2);
+    }
 
     public Segment(Point a, Point b) {
         // używamy konstruktora kopiującego punkt
