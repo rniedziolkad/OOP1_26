@@ -12,5 +12,11 @@ public class Main2 {
         Polygon poly = new Polygon(vertices);
         System.out.println(poly);
         System.out.println(poly.toSvg());
+
+        vertices[0] = new Point(100, 100);
+        v2.setY(100);
+        System.out.println("Po zmianie: " + poly);
+
+
     }
 }
