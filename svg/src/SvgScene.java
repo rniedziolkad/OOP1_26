@@ -24,6 +24,7 @@ public class SvgScene {
             // na koniec znacznik </svg>
             svg = "</svg>";
             writer.write(svg);
+            System.out.println("Zapisano do pliku " + fileName);
 
             writer.close();
         } catch (IOException e) {

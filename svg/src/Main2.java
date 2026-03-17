@@ -33,6 +33,7 @@ public class Main2 {
         }));
 
         System.out.println(scene.toSvg());
+        scene.save("obrazek.svg");
 
     }
 }
