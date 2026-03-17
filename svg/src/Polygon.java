@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class Polygon {
     private Point[] points;
+    private Style style;
 
     public BoundingBox boundingBox() {
         Point p0 = new Point(points[0]); // lewy górny róg
@@ -23,10 +24,15 @@ public class Polygon {
     }
 
     public Polygon(Point[] points) {
+        this(points, new Style("none", "black", 1));
+    }
+
+    public Polygon(Point[] points, Style style) {
         this.points = new Point[points.length];
         for (int i = 0; i < points.length; i++) {
             this.points[i] = new Point(points[i]);
         }
+        this.style = style;
     }
 
 
@@ -44,8 +50,8 @@ public class Polygon {
         }
 
         return String.format("<polygon points=\"%s\" " +
-                "style=\"\" />",
-                pointsString
+                "style=\"%s\" />",
+                pointsString, style.toSvg()
                 );
     }
 }
