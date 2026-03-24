@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class SvgScene {
-    private Polygon[] polygons;
+    // tablica, korzystając z polimorfizmu moze przechowywać
+    // obiekty typu Polygon oraz Ellipse
+    private Shape[] shapes;
     private int i;  // index pod który wstawić kolejny element
 
     public void save(String fileName) {
@@ -37,7 +39,7 @@ public class SvgScene {
     private BoundingBox boundingBox() {
         double minWidth = 0;
         double minHeight = 0;
-        for (Polygon p : polygons) {
+        for (Shape p : shapes) {
             if (p == null) continue;
 
             BoundingBox bb = p.boundingBox();
@@ -51,18 +53,18 @@ public class SvgScene {
     }
 
     public SvgScene() {
-        polygons = new Polygon[3]; // inicjalizacja w konstruktorze
+        shapes = new Shape[3]; // inicjalizacja w konstruktorze
         i = 0;
     }
 
-    public void addPolygon(Polygon poly) {
-        polygons[i] = poly;
+    public void addShape(Shape poly) {
+        shapes[i] = poly;
         i = (i + 1) % 3;    // zwiększenie o 1 z zapętleniem: 0 -> 1 -> 2 -> 0 -> 1 -> ...
     }
 
     public String toSvg() {
         String svg = "";
-        for (Polygon poly : polygons) {
+        for (Shape poly : shapes) {
             if (poly == null) continue; // zabezpieczenie przed pustymi wartościami
 
             svg += poly.toSvg() + "\n";

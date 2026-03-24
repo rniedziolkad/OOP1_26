@@ -8,4 +8,5 @@ public abstract class Shape {
     // metoda abstrakcyjna, mówi, że klasy dziedziczące
     // muszą ją zaimplementować
     public abstract String toSvg();
+    public abstract BoundingBox boundingBox();
 }
