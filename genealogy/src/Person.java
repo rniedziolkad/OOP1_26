@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -52,5 +53,17 @@ public class Person implements Comparable<Person> {
                 ", last_name='" + last_name + '\'' +
                 ", birthDayDate=" + birthDayDate +
                 '}';
+    }
+
+    public List<Person> getChildren() {
+        return this.children.stream().sorted().toList();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLast_name() {
+        return last_name;
     }
 }
