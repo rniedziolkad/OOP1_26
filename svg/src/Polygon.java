@@ -52,6 +52,7 @@ public class Polygon extends Shape {
                 '}';
     }
 
+    @Override
     public String toSvg() {
         String pointsString = "";
         for (Point p : points) {
