@@ -1,8 +1,7 @@
 import java.util.Arrays;
 
-public class Polygon {
+public class Polygon extends Shape {
     private Point[] points;
-    private Style style;
 
     // metoda wytwórcza: statyczna metoda zwracająca utworzony obiekt,
     // nie jest konstruktorem
@@ -37,11 +36,12 @@ public class Polygon {
     }
 
     public Polygon(Point[] points, Style style) {
+        // super() wywołuje konstruktor klasy nadrzędnej
+        super(style);
         this.points = new Point[points.length];
         for (int i = 0; i < points.length; i++) {
             this.points[i] = new Point(points[i]);
         }
-        this.style = style;
     }
 
 
