@@ -12,5 +12,11 @@ public class Main {
         for (Person person: persons) {
             System.out.println(person.toString());
         }
+
+        persons.get(0).adopt(persons.get(1));
+        persons.get(0).adopt(persons.get(2));
+
+        Person youngestChild = persons.get(0).getYoungestChild();
+        System.out.println("Najmłodsze dziecko: " + youngestChild);
     }
 }
