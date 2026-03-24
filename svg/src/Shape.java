@@ -1,4 +1,4 @@
-public abstract class Shape {
+public abstract class Shape implements Svg{
     protected Style style;
 
     public Shape(Style style) {
@@ -7,6 +7,5 @@ public abstract class Shape {
 
     // metoda abstrakcyjna, mówi, że klasy dziedziczące
     // muszą ją zaimplementować
-    public abstract String toSvg();
     public abstract BoundingBox boundingBox();
 }
