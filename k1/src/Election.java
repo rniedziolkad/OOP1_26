@@ -8,6 +8,12 @@ public class Election {
     private List<Candidate> candidates;
     private ElectionTurn firstTurn, secondTurn;
 
+    public Election(String filePath) {
+        populateCandidates(filePath);
+        firstTurn = new ElectionTurn(candidates);
+        secondTurn = null;
+    }
+
     public List<Candidate> getCandidates() {
         return candidates;
     }
@@ -20,7 +26,7 @@ public class Election {
         return secondTurn;
     }
 
-    public List<Candidate> populateCandidates(String filePath) {
+    private void populateCandidates(String filePath) {
         List<Candidate> loaded = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -33,11 +39,12 @@ public class Election {
         } catch (IOException e) {
             System.err.println("Bład odczytu. " + e.getMessage());
         }
-        return loaded;
+        this.candidates = loaded;
     }
 
     public void populate() {
-        this.candidates = populateCandidates("kandydaci.txt");
+        firstTurn.populate("1.csv");
+        System.out.println("firstTurn = " + firstTurn);
     }
 
     public List<Candidate> copyCandidates() {

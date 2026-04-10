@@ -4,16 +4,13 @@ public class Vote {
     private Map<Candidate, Integer> votesForCandidate;
     private List<String> location;
 
-    public static Vote fromCsvLine(String line, Election e){
+    public static Vote fromCsvLine(String line, List<Candidate> candidates){
         List<String> parsedLocation = new ArrayList<>();
         Map<Candidate, Integer> parsedValues = new HashMap<>();
-        System.out.println("line: " + line);
         String[] elements = line.split(",", -1);
-        System.out.println("elements: "+ Arrays.toString(elements));
         parsedLocation.add(elements[2]);
         parsedLocation.add(elements[1]);
         parsedLocation.add(elements[0]);
-        List<Candidate> candidates = e.getCandidates();
         for (int i = 0; i < candidates.size(); i++){
             parsedValues.put(candidates.get(i), Integer.parseInt(elements[i+3]));
         }
