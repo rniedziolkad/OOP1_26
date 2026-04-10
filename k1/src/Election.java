@@ -44,7 +44,6 @@ public class Election {
 
     public void populate() {
         firstTurn.populate("1.csv");
-        System.out.println("firstTurn = " + firstTurn);
     }
 
     public List<Candidate> copyCandidates() {

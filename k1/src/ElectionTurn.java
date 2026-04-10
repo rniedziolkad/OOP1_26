@@ -7,6 +7,11 @@ import java.util.List;
 public class ElectionTurn  {
     private List<Candidate> candidates;
     private List<Vote> votes;
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
     public ElectionTurn(List<Candidate> candidates) {
         this.candidates = candidates;
         votes = new ArrayList<>();

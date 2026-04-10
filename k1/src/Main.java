@@ -5,5 +5,8 @@ public class Main {
         Election e = new Election("kandydaci.txt");
         e.populate();
 
+        Vote summarized =  Vote.summarize(e.getFirstTurn().getVotes());
+        System.out.println(summarized);
+
     }
 }

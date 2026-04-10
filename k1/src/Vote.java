@@ -29,4 +29,20 @@ public class Vote {
                 ", location=" + location +
                 '}';
     }
+
+    public static Vote summarize(List<Vote> votes){
+        List<String> summarizedLocation = new ArrayList<>();
+        Map<Candidate, Integer> summarizedValues = new HashMap<>();
+        for(Vote v : votes){
+            for(Candidate key : v.votesForCandidate.keySet()) {
+                if(summarizedValues.containsKey(key)) {
+                    int sum = summarizedValues.get(key)+v.votesForCandidate.get(key);
+                    summarizedValues.put(key, sum);
+                } else {
+                    summarizedValues.put(key, v.votesForCandidate.get(key));
+                }
+            }
+        }
+        return new Vote(summarizedValues, summarizedLocation);
+    }
 }
