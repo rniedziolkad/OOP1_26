@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 public class Person implements Comparable<Person> {
     private String name, last_name;
-    private LocalDate birthDayDate;
+    private LocalDate birthDayDate, deathDate;
     private Set<Person> children;
 
     public boolean adopt(Person person) {
@@ -35,9 +35,11 @@ public class Person implements Comparable<Person> {
 
     public Person(String name,
                   String last_name,
-                  LocalDate birthDayDate) {
+                  LocalDate birthDayDate,
+                  LocalDate deathDate) {
         this.name = name;
         this.birthDayDate = birthDayDate;
+        this.deathDate = deathDate;
         this.last_name = last_name;
         this.children = new HashSet<>();
     }
@@ -52,6 +54,7 @@ public class Person implements Comparable<Person> {
                 "name='" + name + '\'' +
                 ", last_name='" + last_name + '\'' +
                 ", birthDayDate=" + birthDayDate +
+                ", deathDate=" + deathDate +
                 '}';
     }
 
