@@ -1,14 +1,32 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class Person implements Comparable<Person> {
+public class Person implements Comparable<Person>, Serializable {
     private String name, last_name;
     private LocalDate birthDayDate, deathDate;
     private Set<Person> children;
+
+    public static void toBinaryFile(String filePath, List<Person> personList) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(personList);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static List<Person> fromBinaryFile(String filePath) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            List<Person> loaded = (List<Person>) ois.readObject();
+            return loaded;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 
     public static List<Person> fromCsv(String filePath) {
         List<Person> personList = new ArrayList<>();
