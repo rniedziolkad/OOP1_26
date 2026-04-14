@@ -1,5 +1,7 @@
+import java.time.LocalDate;
+
 public class NegativeLifespanException extends RuntimeException {
-    public NegativeLifespanException() {
-        super("Ujemna długość życia");
+    public NegativeLifespanException(LocalDate birth, LocalDate death) {
+        super("Ujemna długość życia: " + birth + " -> " + death);
     }
 }

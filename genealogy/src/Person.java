@@ -46,7 +46,7 @@ public class Person implements Comparable<Person> {
         if (!deathDayString.isEmpty()) {
             deathDay = LocalDate.parse(deathDayString, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
             if (deathDay.isBefore(birthDay)) {
-                throw new NegativeLifespanException();
+                throw new NegativeLifespanException(birthDay, deathDay);
             }
         }
         Person created = new Person(nameParts[0], nameParts[1], birthDay, deathDay);
