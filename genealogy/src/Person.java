@@ -1,13 +1,28 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Person implements Comparable<Person> {
     private String name, last_name;
     private LocalDate birthDayDate, deathDate;
     private Set<Person> children;
+
+    public static Person fromCsvLine(String line) {
+        // rodzielanie linii csv na elementy
+        String[] elements = line.split(",", -1);
+        String fullName = elements[0];
+        // rozdzielanie na imie i nazwisko
+        String[] nameParts = fullName.split(" ", 2);
+        String birthDayString = elements[1];
+        LocalDate birthDay = LocalDate.parse(birthDayString, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        String deathDayString = elements[2];
+        LocalDate deathDay = LocalDate.parse(deathDayString, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+
+        Person created = new Person(nameParts[0], nameParts[1], birthDay, deathDay);
+        return created;
+    }
 
     public boolean adopt(Person person) {
         boolean success = children.add(person);
