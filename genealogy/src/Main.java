@@ -7,5 +7,7 @@ public class Main {
         );
         System.out.println(p);
 
+        Person.fromCsv("family.csv");
+
     }
 }
