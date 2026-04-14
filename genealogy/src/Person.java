@@ -24,9 +24,21 @@ public class Person implements Comparable<Person> {
                         throw new AmbiguousPersonException(parsed);
                     }
                 }
-
-
                 personList.add(parsed);
+                String[] parts = line.split(",", -1);
+                String parent1 = parts[3];
+                String parent2 = parts[4];
+
+                for (Person p : personList) {
+                    String fullName = p.name + " " + p.last_name;
+                    if (fullName.equals(parent1)) {
+                        p.adopt(parsed);
+                    }
+
+                    if (fullName.equals(parent2)) {
+                        p.adopt(parsed);
+                    }
+                }
 
             }
 

@@ -6,8 +6,8 @@ public class Main {
         System.out.println("Loaded list");
         for (Person p : loaded) {
             System.out.println(p);
+            System.out.println("dzieci: " + p.getChildren());
         }
 
-        Person.fromCsvLine("Marek Kowalski,15.05.1899,25.06.1857,,");
     }
 }
