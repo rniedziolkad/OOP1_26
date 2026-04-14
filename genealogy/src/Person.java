@@ -1,5 +1,9 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,14 +13,32 @@ public class Person implements Comparable<Person> {
     private LocalDate birthDayDate, deathDate;
     private Set<Person> children;
 
+    public static List<Person> fromCsv(String filePath) {
+        List<Person> personList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line = reader.readLine(); // tutaj wczyta się linia nagłówka, można zignorować
+            // wczytujemy linie aż do końca pliku
+            // kiedy to metoda readLine() zwróci null
+            while ( (line = reader.readLine()) != null) {
+                System.out.println("wczytana linia: " + line);
+            }
+
+        } catch (IOException e) {
+            System.out.println("nie udało się czytać z pliku: " + e.getMessage());
+        }
+        return personList;
+    }
+
     public static Person fromCsvLine(String line) {
         // rodzielanie linii csv na elementy
         String[] elements = line.split(",", -1);
         String fullName = elements[0];
         // rozdzielanie na imie i nazwisko
         String[] nameParts = fullName.split(" ", 2);
+
         String birthDayString = elements[1];
         LocalDate birthDay = LocalDate.parse(birthDayString, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+
         String deathDayString = elements[2];
         LocalDate deathDay = null;
         if (!deathDayString.isEmpty()) {
