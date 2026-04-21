@@ -15,11 +15,13 @@ public class Main {
         } else {
             System.out.println("Nie odczytano z pliku binarnego");
         }
-        String uml = "@startuml\n" +
-                fromBinary.getFirst().toPlantUml() +
-                "@enduml\n";
+
+        String uml = Person.listToPlantUml(fromBinary);
+
         PlantUMLRunner.setJarPath("/home/student/Pobrane/plantuml-1.2026.2.jar");
         PlantUMLRunner.generateUML(uml, "/home/student/Pobrane/", "output");
+
+
 
     }
 }

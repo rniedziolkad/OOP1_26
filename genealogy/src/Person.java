@@ -8,6 +8,21 @@ public class Person implements Comparable<Person>, Serializable {
     private LocalDate birthDayDate, deathDate;
     private Set<Person> children;
 
+    public static String listToPlantUml(List<Person> personList) {
+        String uml = "@startuml\n";
+        for (Person p : personList) {
+            uml += "object " + p.name + "_" + p.last_name + "\n";
+        }
+
+        for (Person p : personList) {
+            for (Person child : p.children) {
+                uml += child.name + "_" + child.last_name + " --> " + p.name + "_" + p.last_name + "\n";
+            }
+        }
+        uml += "@enduml\n";
+        return uml;
+    }
+
     public String toPlantUml() {
         String uml = "object " + this.name + "_" + this.last_name +"\n";
         for (Person child : children) {
