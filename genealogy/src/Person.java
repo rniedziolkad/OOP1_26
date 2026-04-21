@@ -1,6 +1,7 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Person implements Comparable<Person>, Serializable {
@@ -21,6 +22,29 @@ public class Person implements Comparable<Person>, Serializable {
                 })
                 .toList();
     }
+
+    public static List<Person> sortedByDeathAndLongOfLive(List<Person> personList) {
+        return personList.stream()
+                .filter((person) -> {
+                    return person.deathDate != null;
+                })
+                .sorted((p1, p2) -> {
+                    long p1longLive = ChronoUnit.DAYS.between(p1.deathDate, p1.birthDayDate);
+                    long p2longLive = ChronoUnit.DAYS.between(p2.deathDate, p2.birthDayDate);
+                    return (int)(p1longLive - p2longLive);
+                })
+                .toList();
+    }
+
+    public static Optional<Person> getOldPerson (List<Person> personList) {
+        return personList.stream()
+                .filter(person -> {
+                    return person.deathDate == null;
+                }).min((p1, p2) -> {
+                    return p1.compareTo(p2);
+                });
+    }
+
     public static List<Person> filterSubstring(List<Person> personList, String substring) {
 //        List<Person> result = new ArrayList<>();
 //        for (Person p : personList) {

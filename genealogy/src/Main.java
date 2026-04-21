@@ -24,5 +24,13 @@ public class Main {
         for (Person p : sorted) {
             System.out.println(p);
         }
+
+        List<Person> sortedList = Person.sortedByDeathAndLongOfLive(fromBinary);
+        System.out.println("Posortowane po zyjacych i dlugosci zycia:");
+        for (Person p : sortedList) {
+            System.out.println(p);
+        }
+
+        System.out.println("Najstarsza osoba: " + Person.getOldPerson(fromBinary));
     }
 }
