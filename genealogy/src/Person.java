@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.function.Function;
 
 public class Person implements Comparable<Person>, Serializable {
     private String name, last_name;
@@ -62,10 +63,10 @@ public class Person implements Comparable<Person>, Serializable {
                 .toList();
     }
 
-    public static String listToPlantUml(List<Person> personList) {
+    public static String listToPlantUml(List<Person> personList, Function<String, String> postProcess) {
         String uml = "@startuml\n";
         for (Person p : personList) {
-            uml += "object " + p.name + "_" + p.last_name + "\n";
+            uml += postProcess.apply("object " + p.name + "_" + p.last_name) + "\n";
         }
 
         for (Person p : personList) {

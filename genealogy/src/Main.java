@@ -7,7 +7,9 @@ public class Main {
         Person.toBinaryFile("binary.data", loaded);
         System.out.println("Loaded list");
         List<Person> fromBinary = Person.fromBinaryFile("binary.data");
-        String uml = Person.listToPlantUml(fromBinary);
+        String uml = Person.listToPlantUml(fromBinary, (modify) -> {
+            return modify + " #yellow";
+        });
 
         PlantUMLRunner.setJarPath("/home/student/Pobrane/plantuml-1.2026.2.jar");
         PlantUMLRunner.generateUML(uml, "/home/student/Pobrane/", "output");
