@@ -8,6 +8,14 @@ public class Person implements Comparable<Person>, Serializable {
     private LocalDate birthDayDate, deathDate;
     private Set<Person> children;
 
+    public String toPlantUml() {
+        String uml = "object " + this.name + "_" + this.last_name +"\n";
+        for (Person child : children) {
+            uml += child.name + "_" + child.last_name + " --> " + this.name + "_" + this.last_name +"\n";
+        }
+        return uml;
+    }
+
     public static void toBinaryFile(String filePath, List<Person> personList) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(personList);
