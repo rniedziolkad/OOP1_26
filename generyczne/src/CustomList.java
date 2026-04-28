@@ -18,9 +18,9 @@ public class CustomList<T> extends AbstractList<T> {
 
     @Override
     public int size() {
-        int counter = 1;
         if (this.head == null) return 0;
 
+        int counter = 1;
         Node<T> current = this.head;
         while (current.next != null) {
             counter++;

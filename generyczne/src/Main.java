@@ -1,6 +1,8 @@
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        CustomList<Double> customList = new CustomList<>();
+        List<Double> customList = new CustomList<>();
         customList.addLast(0.0);
         customList.addLast(1.0);
         customList.addLast(5.0);
