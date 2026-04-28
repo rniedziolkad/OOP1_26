@@ -46,4 +46,30 @@ public class CustomList {
         return head.value;
     }
 
+    public int removeFirst() {
+        if (head == null) {
+            throw new RuntimeException("Lista jest pusta");
+        }
+        int value = head.value;
+        this.head = this.head.next;
+        if (this.head == null) {
+            this.tail = null;   // lista stała się pusta
+        }
+        return value;
+    }
+
+    public int removeLast() {
+        if (tail == null) {
+            throw new RuntimeException("Lista jest pusta");
+        }
+        int value = tail.value;
+        Node current = this.head;
+        while (current.next != tail) {
+            current = current.next;
+        }
+        tail = current;
+        tail.next = null;
+        return value;
+    }
+
 }
