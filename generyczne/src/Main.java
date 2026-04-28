@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        CustomList customList = new CustomList();
+        CustomList<Integer> customList = new CustomList<>();
         customList.addLast(0);
         customList.addLast(1);
         customList.addLast(5);
