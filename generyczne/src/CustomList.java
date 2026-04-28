@@ -1,21 +1,21 @@
-public class CustomList {
-    private static class Node {
-        private int value;
-        private Node next;
-        public Node(int value) {
+public class CustomList<T> {
+    private static class Node<T> {
+        private T value;
+        private Node<T> next;
+        public Node(T value) {
             this.value = value;
             this.next = null;
         }
     }
 
-    private Node head;
-    private Node tail;
+    private Node<T> head;
+    private Node<T> tail;
     public CustomList() {
         this.head = this.tail = null;
     }
 
-    public void addLast(int value) {
-        Node newNode = new Node(value);
+    public void addLast(T value) {
+        Node<T> newNode = new Node<>(value);
         if (tail == null) {
             this.tail = this.head = newNode; // lista była pusta pierwszy element
         } else {
@@ -23,15 +23,15 @@ public class CustomList {
             this.tail = newNode;
         }
     }
-    public int getLast() {
+    public T getLast() {
         if (tail == null) {
             throw new RuntimeException("Lista jest pusta");
         }
         return tail.value;
     }
 
-    public void addFirst(int value) {
-        Node newNode = new Node(value);
+    public void addFirst(T value) {
+        Node<T> newNode = new Node<>(value);
         if (head == null) {
             this.head = this.tail = newNode; // lista była pusta, pierwszy element
         } else {
@@ -39,18 +39,18 @@ public class CustomList {
             this.head = newNode;
         }
     }
-    public int getFirst() {
+    public T getFirst() {
         if (head == null) {
             throw new RuntimeException("Lista jest pusta");
         }
         return head.value;
     }
 
-    public int removeFirst() {
+    public T removeFirst() {
         if (head == null) {
             throw new RuntimeException("Lista jest pusta");
         }
-        int value = head.value;
+        T value = head.value;
         this.head = this.head.next;
         if (this.head == null) {
             this.tail = null;   // lista stała się pusta
@@ -58,12 +58,12 @@ public class CustomList {
         return value;
     }
 
-    public int removeLast() {
+    public T removeLast() {
         if (tail == null) {
             throw new RuntimeException("Lista jest pusta");
         }
-        int value = tail.value;
-        Node current = this.head;
+        T value = tail.value;
+        Node<T> current = this.head;
         while (current.next != tail) {
             current = current.next;
         }
