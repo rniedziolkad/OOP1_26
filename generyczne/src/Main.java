@@ -26,6 +26,20 @@ public class Main {
         List<String> filter = filterObject(objects, String.class);
 
         System.out.println(filter);
+
+        int var = 5;
+        CustomPredicate<Integer> predicate = new CustomPredicate<>(-10, 10);
+        System.out.println(predicate.test(var));
+        List<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        integers.add(5);
+        integers.add(10);
+        System.out.println(getNumberOfElementsBetweenScope(integers, 1, 10));
+    }
+    public static <T extends Comparable<T>> int getNumberOfElementsBetweenScope(List<T> list, T min, T max) {
+        if (list.size() == 0) return 0;
+        CustomPredicate<T> predicate = new CustomPredicate<T>(min, max);
+        return list.stream().filter(predicate).toList().size();
     }
 
     public static <T, R> List<R> filterObject(List<T> input, Class<R> tClass) {
