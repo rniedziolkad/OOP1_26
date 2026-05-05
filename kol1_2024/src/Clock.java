@@ -3,6 +3,16 @@ import java.time.LocalTime;
 
 public  abstract class Clock {
     protected int h,m,s;
+    private City city;
+
+    public Clock(City city) {
+        this.city = city;
+    }
+
+    public void setCity(City city) {
+        this.h = (this.h + (city.getClock_region() - this.city.getClock_region())) % 24;
+        this.city = city;
+    }
 
     public void setCurrentTime(){
      this.h=  LocalTime.now().getHour();

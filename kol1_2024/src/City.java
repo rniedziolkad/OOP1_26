@@ -12,6 +12,10 @@ public class City {
     private String longitude;
     private String latitude;
 
+    public int getClock_region() {
+        return clock_region;
+    }
+
     public City(String city_name, int clock_region, String longitude, String latitude) {
         this.city_name = city_name;
         this.clock_region = clock_region;

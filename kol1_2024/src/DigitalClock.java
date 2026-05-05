@@ -4,7 +4,8 @@ public class DigitalClock extends Clock{
     }
     private Type clockType;
 
-    public DigitalClock(Type clockType) {
+    public DigitalClock(Type clockType, City city) {
+        super(city);
         this.clockType = clockType;
     }
 
