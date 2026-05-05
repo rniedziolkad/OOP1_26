@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public  abstract class Clock {
-    private  int h,m,s;
+    protected int h,m,s;
 
     public void setCurrentTime(){
      this.h=  LocalTime.now().getHour();
