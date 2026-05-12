@@ -34,4 +34,32 @@ public class DeathCauseStatistic {
         this.choroba = choroba;
         this.zgony = zgony;
     }
+
+    public AgeBracketDeaths getAge(int age) {
+        int young = age - (age % 5);
+        int old = young + 4;
+        int count;
+
+        if (age >= 95) {
+            count = zgony[19];
+        } else {
+            count = zgony[age / 5];
+        }
+
+        return new AgeBracketDeaths(young, old, count);
+    }
+
+    public class AgeBracketDeaths {
+        public final int young;
+        public final int old;
+        public final int deathCount;
+
+        public AgeBracketDeaths(int young, int old, int deathCount) {
+            this.young = young;
+            this.old = old;
+            this.deathCount = deathCount;
+        }
+    }
+
+
 }
