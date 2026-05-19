@@ -7,6 +7,10 @@ import java.sql.SQLException;
 public class DatabaseConnection {
     private static Connection connection;
 
+    public static Connection getConnection() {
+        return connection;
+    }
+
     public static void connect (String file_path){
         try {
             // DriverManager -- manager do łączenia się z bazami danych
