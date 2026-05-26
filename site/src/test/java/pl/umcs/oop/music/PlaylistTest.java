@@ -44,5 +44,15 @@ public class PlaylistTest {
         Assertions.assertTrue(playlist.contains(new Song("bajo jajo", "hej", 20)));
     }
 
+    @Test
+    void checkDuration() {
+        Playlist playlist = new Playlist();
+        playlist.add(new Song("a", "ab", 50));
+        playlist.add(new Song("b", "bc", 30));
+        playlist.add(new Song("c", "ca", 80));
 
+        Song test = playlist.atSecond(100);
+
+        Assertions.assertEquals(new Song("c", "ca", 80), test);
+    }
 }
