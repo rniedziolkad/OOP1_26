@@ -23,4 +23,26 @@ public class PlaylistTest {
         //then
         Assertions.assertEquals(1, playlist.size());
     }
+
+    @Test
+    void checkSongAfterAdding() {
+        Playlist playlist = new Playlist();
+        Song s2 = new Song("bajo jajo", "hej", 20);
+
+        playlist.add(s2);
+
+        Assertions.assertTrue(playlist.contains(s2));
+    }
+
+    @Test
+    void checkSongIfEquals() {
+        Playlist playlist = new Playlist();
+        Song s2 = new Song("bajo jajo", "hej", 20);
+
+        playlist.add(s2);
+
+        Assertions.assertTrue(playlist.contains(new Song("bajo jajo", "hej", 20)));
+    }
+
+
 }
