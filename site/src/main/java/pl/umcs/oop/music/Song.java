@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public record Song(String artist, String title, int duration) {
     public static class Persistence {
-        public Optional<Song> read(int index) {
+        public static Optional<Song> read(int index) {
             String sql = "SELECT artist, title, length FROM song WHERE id = ?";
             try (PreparedStatement stmt = DatabaseConnection.getConnection().prepareStatement(sql)) {
                 stmt.setInt(1, index);
