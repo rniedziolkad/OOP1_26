@@ -1,35 +1,47 @@
 package pl.umcs.oop.database;
-
+import java.util.HashMap;
+import java.util.Map;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static Connection connection;
 
-    public static Connection getConnection() {
-        return connection;
+    static private final Map<String, Connection> connections = new HashMap<>();
+
+    static public Connection getConnection() {
+        return getConnection("");
     }
 
-    public static void connect (String file_path){
+    static public Connection getConnection(String name) {
+        return connections.get(name);
+    }
+
+    static public void connect(String filePath) {
+        connect(filePath, "");
+    }
+
+    static public void connect(String filePath, String connectionName){
         try {
-            // DriverManager -- manager do łączenia się z bazami danych
-            connection = DriverManager.getConnection("jdbc:sqlite:" + file_path);
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:" + filePath);
+            connections.put(connectionName, connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void disconnect () {
-        if (connection != null) {
-            try {
-                connection.close();
-                connection = null;
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    static public void disconnect() {
+        disconnect("");
     }
 
-
+    static public void disconnect(String connectionName){
+        try {
+            Connection connection = connections.get(connectionName);
+            connection.close();
+            connections.remove(connectionName);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
