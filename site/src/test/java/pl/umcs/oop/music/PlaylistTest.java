@@ -55,4 +55,48 @@ public class PlaylistTest {
 
         Assertions.assertEquals(new Song("c", "ca", 80), test);
     }
+
+    @Test
+    void checkAtSeondThrowsException() {
+        Playlist playlist = new Playlist();
+        playlist.add(new Song("a", "ab", 50));
+        playlist.add(new Song("b", "bc", 30));
+        playlist.add(new Song("c", "ca", 80));
+
+        Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> playlist.atSecond(161)
+        );
+    }
+    @Test
+    void checkAtSeondThrowsExceptionWhenBelow0() {
+        Playlist playlist = new Playlist();
+        playlist.add(new Song("a", "ab", 50));
+        playlist.add(new Song("b", "bc", 30));
+        playlist.add(new Song("c", "ca", 80));
+
+        IndexOutOfBoundsException e = Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> playlist.atSecond(-1)
+        );
+
+        Assertions.assertEquals("czas ujemny", e.getMessage());
+    }
+
+    @Test
+    void checkAtSeondThrowsExceptionWhenTimeGreater() {
+        Playlist playlist = new Playlist();
+        playlist.add(new Song("a", "ab", 50));
+        playlist.add(new Song("b", "bc", 30));
+        playlist.add(new Song("c", "ca", 80));
+
+        IndexOutOfBoundsException e = Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () -> playlist.atSecond(161)
+        );
+
+        Assertions.assertEquals("czas ponad długość playlisty", e.getMessage());
+    }
+
+
 }

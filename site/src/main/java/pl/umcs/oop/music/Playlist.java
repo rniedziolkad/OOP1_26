@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Playlist extends ArrayList<Song> {
     public Song atSecond (int sec) {
+        if (sec < 0){
+            throw new IndexOutOfBoundsException("czas ujemny");
+        }
         int elapsed = 0;
         for(int i = 0; i < this.size(); i++) {
             Song song = this.get(i);
@@ -13,6 +16,7 @@ public class Playlist extends ArrayList<Song> {
             }
             elapsed += song.duration();
         }
-        return null;
+
+        throw new IndexOutOfBoundsException("czas ponad długość playlisty");
     }
 }
