@@ -85,16 +85,17 @@ public class PlaylistTest {
 
     @Test
     void checkAtSeondThrowsExceptionWhenTimeGreater() {
+        // given
         Playlist playlist = new Playlist();
         playlist.add(new Song("a", "ab", 50));
         playlist.add(new Song("b", "bc", 30));
         playlist.add(new Song("c", "ca", 80));
-
+        // when
         IndexOutOfBoundsException e = Assertions.assertThrows(
                 IndexOutOfBoundsException.class,
                 () -> playlist.atSecond(161)
         );
-
+        // then
         Assertions.assertEquals("czas ponad długość playlisty", e.getMessage());
     }
 
