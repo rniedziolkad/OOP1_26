@@ -19,9 +19,10 @@ public class Server {
                 System.out.println("Oczekuje na połączenie...");
                 Socket connectedClient = serverSocket.accept(); // ten Socket służy do komunikacji z połączonym klientem
                 System.out.println("Połączono: " + connectedClient);
-                Scanner scanner = new Scanner(connectedClient.getInputStream());
+                Scanner scanner = new Scanner(connectedClient.getInputStream()); // do odczytywania wiadomosci
                 String message;
                 while (scanner.hasNextLine()) {
+                    // czytamy wiadomości w nieskończoność (dopóki jest połączenie)
                     message = scanner.nextLine();
                     System.out.println("Otrzymano wiadomość: " + message);
                 }
