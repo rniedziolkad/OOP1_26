@@ -17,7 +17,7 @@ public class Client {
                 out.println(input); // wysyłamy wiadomość do serwera
                 String response = in.nextLine(); // czekamy na odpowiedź
                 System.out.println(response);
-                input = consoleIn.nextLine();
+                input = consoleIn.nextLine(); // czytamy kolejne wejscie z konsoli
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
