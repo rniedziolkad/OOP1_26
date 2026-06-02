@@ -22,6 +22,7 @@ public class ClientThread extends Thread {
     }
 
     public void send(String message) {
+        System.out.println("wysyłam wiadomość: " + message);
         writer.println(message);
     }
 
