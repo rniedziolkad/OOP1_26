@@ -35,4 +35,9 @@ public class Server {
             throw new RuntimeException(e);
         }
     }
+
+    public static void main(String[] args) {
+        Server chatServer = new Server(12345);
+        chatServer.listen();
+    }
 }

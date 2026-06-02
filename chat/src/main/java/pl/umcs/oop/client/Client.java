@@ -9,6 +9,7 @@ public class Client {
     public static void main(String[] args) {
         // do łączenia się z serwerem służy klasa Socket
         try (Socket socket = new Socket("localhost", 12345)){
+            System.out.println("Połączono z serwerem...");
             Scanner in = new Scanner(socket.getInputStream()); // do odczytywania wiadomości z serwera
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);   // do wysyłania wiadomości do serwera
             Scanner consoleIn = new Scanner(System.in);   // System.in to InputStream z konsoli
