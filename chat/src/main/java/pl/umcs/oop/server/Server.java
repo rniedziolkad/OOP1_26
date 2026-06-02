@@ -21,7 +21,7 @@ public class Server {
                 Socket connectedClient = serverSocket.accept(); // ten Socket służy do komunikacji z połączonym klientem
                 System.out.println("Połączono: " + connectedClient);
                 Scanner scanner = new Scanner(connectedClient.getInputStream()); // do odczytywania wiadomosci od klienta
-                PrintWriter writer = new PrintWriter(connectedClient.getOutputStream()); // do wysyłania wiadomości do klienta
+                PrintWriter writer = new PrintWriter(connectedClient.getOutputStream(), true); // do wysyłania wiadomości do klienta
                 String message;
                 while (scanner.hasNextLine()) {
                     // czytamy wiadomości w nieskończoność (dopóki jest połączenie)
