@@ -14,7 +14,7 @@ public class Client {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);   // do wysyłania wiadomości do serwera
             Scanner consoleIn = new Scanner(System.in);   // System.in to InputStream z konsoli
             String input = consoleIn.nextLine();
-            while (!input.equals("exit")) {
+            while (!input.equals("exit")) { // ustaliliśmy, że słowo exit konczy działanie
                 out.println(input); // wysyłamy wiadomość do serwera
                 String response = in.nextLine(); // czekamy na odpowiedź
                 System.out.println(response);
