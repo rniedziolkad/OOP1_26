@@ -48,6 +48,7 @@ public class ClientThread extends Thread {
                 throw new RuntimeException(e);
             }
             System.out.println("Zakończono połączenie " + socket);
+            allClients.remove(this);    // usunięcie klienta z listy klientów
         }
 
     }
