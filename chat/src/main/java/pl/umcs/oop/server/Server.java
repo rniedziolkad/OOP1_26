@@ -1,13 +1,19 @@
 package pl.umcs.oop.server;
 
+import pl.umcs.oop.client.ClientThread;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Server {
     private int port;
+    // CopyOnWriteArrayList -- implementacja listy bezbieczna dla wielowątkowości
+    private final List<ClientThread> clients = new CopyOnWriteArrayList<>();
     public Server(int port) {
         this.port = port;
     }
@@ -21,15 +27,9 @@ public class Server {
                 System.out.println("Oczekuje na połączenie...");
                 Socket connectedClient = serverSocket.accept(); // ten Socket służy do komunikacji z połączonym klientem
                 System.out.println("Połączono: " + connectedClient);
-                Scanner scanner = new Scanner(connectedClient.getInputStream()); // do odczytywania wiadomosci od klienta
-                PrintWriter writer = new PrintWriter(connectedClient.getOutputStream(), true); // do wysyłania wiadomości do klienta
-                String message;
-                while (scanner.hasNextLine()) {
-                    // czytamy wiadomości w nieskończoność (dopóki jest połączenie)
-                    message = scanner.nextLine();
-                    System.out.println("Otrzymano wiadomość: " + message);
-                    writer.println("echo: " + message);
-                }
+                ClientThread ct = new ClientThread(connectedClient, clients);
+                clients.add(ct);
+                ct.start();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
