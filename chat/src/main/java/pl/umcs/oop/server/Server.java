@@ -13,6 +13,7 @@ public class Server {
     }
 
     public void listen() {
+        // ServerSocket służy do przyjmowania połączeń
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Serwer nasłuchuje na porcie: " + port);
             while (true) {
