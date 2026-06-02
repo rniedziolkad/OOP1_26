@@ -1,4 +1,4 @@
-package pl.umcs.oop.client;
+package pl.umcs.oop.server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
 
+// wątek obsługujący pojedynczego klienta
 public class ClientThread extends Thread {
     private Socket socket; // gniazdo, na którym połączony jest klient
     private List<ClientThread> allClients; // każdy klient ma referencję do listy wszystkich klientów

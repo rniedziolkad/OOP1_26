@@ -13,11 +13,13 @@ public class Client {
             Scanner in = new Scanner(socket.getInputStream()); // do odczytywania wiadomości z serwera
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);   // do wysyłania wiadomości do serwera
             Scanner consoleIn = new Scanner(System.in);   // System.in to InputStream z konsoli
+            Receiver receiver = new Receiver(socket);
+            receiver.setDaemon(true);
+            receiver.start();
+            // wysyłanie do serwera
             String input = consoleIn.nextLine();
             while (!input.equals("exit")) { // ustaliliśmy, że słowo exit konczy działanie
                 out.println(input); // wysyłamy wiadomość do serwera
-                String response = in.nextLine(); // czekamy na odpowiedź
-                System.out.println(response);
                 input = consoleIn.nextLine(); // czytamy kolejne wejscie z konsoli
             }
         } catch (IOException e) {
