@@ -24,6 +24,8 @@ public class Controller {
     @FXML
     private Canvas canvas;
 
+    private ServerThread serverThread;
+
     @FXML
     protected void onStartServerClicked() {
         // IGNORE
@@ -35,7 +37,7 @@ public class Controller {
         int port = Integer.parseInt(portField.getText());
         try {
             // 2. połącz się z serwerem
-            ServerThread serverThread = new ServerThread(host, port);
+            serverThread = new ServerThread(host, port);
 
             serverThread.start();
         } catch (IOException e) {
@@ -56,8 +58,13 @@ public class Controller {
             Color color = colorPicker.getValue();
             // 3. pobrać promień z radiusSlider
             double radius = radiusSlider.getValue();
-            // 4. prześij dane koła do serwera
-
+            // 4. prześlij dane koła do serwera
+            if (serverThread == null) {
+                System.out.println("Connect to server!");
+            } else {
+                Dot dot = new Dot(x, y, color, radius);
+                serverThread.send(dot.toMessage());
+            }
 
 //            canvas.getGraphicsContext2D().setFill(color); // ustawia kolor kolejnej akcji
 //            canvas.getGraphicsContext2D().fillOval(x - radius, y - radius, radius*2, radius*2);
