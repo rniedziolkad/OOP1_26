@@ -1,5 +1,6 @@
 package pl.umcs.oop.circleapp;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ColorPicker;
@@ -38,6 +39,12 @@ public class Controller {
         try {
             // 2. połącz się z serwerem
             serverThread = new ServerThread(host, port);
+
+            serverThread.setConsumer(dot -> Platform.runLater(() -> {
+                canvas.getGraphicsContext2D().setFill(dot.c()); // ustawia kolor kolejnej akcji
+                canvas.getGraphicsContext2D().fillOval(dot.x() - dot.r(), dot.y() - dot.r(),
+                        dot.r()*2, dot.r()*2);
+            }));
 
             serverThread.start();
         } catch (IOException e) {
