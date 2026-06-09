@@ -45,7 +45,7 @@ public class Controller {
                 canvas.getGraphicsContext2D().fillOval(dot.x() - dot.r(), dot.y() - dot.r(),
                         dot.r()*2, dot.r()*2);
             }));
-
+            serverThread.setDaemon(true); // zakończy wątek, gdy kontroler zostanie usunięty
             serverThread.start();
         } catch (IOException e) {
             System.out.println("Unable to connect: " + e.getMessage());
@@ -60,7 +60,6 @@ public class Controller {
                 && mouseEvent.getButton() == MouseButton.PRIMARY) {
             double x = mouseEvent.getX();
             double y = mouseEvent.getY();
-            System.out.println("Kliknięto (" + x + ", " + y + ")");
             // 2. pobrać kolor z colorPicker
             Color color = colorPicker.getValue();
             // 3. pobrać promień z radiusSlider
@@ -72,9 +71,6 @@ public class Controller {
                 Dot dot = new Dot(x, y, color, radius);
                 serverThread.send(dot.toMessage());
             }
-
-//            canvas.getGraphicsContext2D().setFill(color); // ustawia kolor kolejnej akcji
-//            canvas.getGraphicsContext2D().fillOval(x - radius, y - radius, radius*2, radius*2);
         }
     }
 
