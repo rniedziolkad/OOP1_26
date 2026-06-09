@@ -23,6 +23,7 @@ public class Server {
     }
 
     public void broadcast(String message) {
+        System.out.println("Sending: " + message);
         for (ClientThread ct : handlers) {
             ct.send(message);
         }

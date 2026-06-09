@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import pl.umcs.oop.circleapp.client.ServerThread;
+
+import java.io.IOException;
 
 public class Controller {
     @FXML
@@ -30,8 +33,14 @@ public class Controller {
         // 1. pobierz adres i port serwera
         String host = addressField.getText();
         int port = Integer.parseInt(portField.getText());
-        // 2. połącz się z serwerem
-        
+        try {
+            // 2. połącz się z serwerem
+            ServerThread serverThread = new ServerThread(host, port);
+
+            serverThread.start();
+        } catch (IOException e) {
+            System.out.println("Unable to connect: " + e.getMessage());
+        }
 
     }
     @FXML
@@ -47,9 +56,11 @@ public class Controller {
             Color color = colorPicker.getValue();
             // 3. pobrać promień z radiusSlider
             double radius = radiusSlider.getValue();
-            // 4. wyrysować koło na canvas
-            canvas.getGraphicsContext2D().setFill(color); // ustawia kolor kolejnej akcji
-            canvas.getGraphicsContext2D().fillOval(x - radius, y - radius, radius*2, radius*2);
+            // 4. prześij dane koła do serwera
+
+
+//            canvas.getGraphicsContext2D().setFill(color); // ustawia kolor kolejnej akcji
+//            canvas.getGraphicsContext2D().fillOval(x - radius, y - radius, radius*2, radius*2);
         }
     }
 
