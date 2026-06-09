@@ -27,7 +27,12 @@ public class Controller {
     }
     @FXML
     protected void onConnectClicked() {
-        // TODO
+        // 1. pobierz adres i port serwera
+        String host = addressField.getText();
+        int port = Integer.parseInt(portField.getText());
+        // 2. połącz się z serwerem
+        
+
     }
     @FXML
     protected void onMouseClicked(MouseEvent mouseEvent) {
