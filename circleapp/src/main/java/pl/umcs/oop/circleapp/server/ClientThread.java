@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 
 public class ClientThread implements Runnable {
     private final Socket socket;
@@ -35,7 +36,7 @@ public class ClientThread implements Runnable {
         try {
             while ((message = reader.readLine()) != null)
                 server.broadcast(message);
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
